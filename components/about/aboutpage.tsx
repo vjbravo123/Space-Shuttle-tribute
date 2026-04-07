@@ -2,14 +2,14 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Rocket, Users, Globe, ShieldCheck } from 'lucide-react';
+import { Heart, Rocket, Users, Globe, Star } from 'lucide-react';
 
 const AboutPage = () => {
   return (
     <main className="bg-[#020617] min-h-screen pt-24 pb-12 overflow-hidden">
       {/* 1. Page Header */}
       <section className="relative px-4 py-20 text-center">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-blue-600/10 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-sky-600/10 to-transparent blur-3xl pointer-events-none" />
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -21,8 +21,8 @@ const AboutPage = () => {
             Preserving the <span className="italic text-sky-400">Legacy</span>
           </h1>
           <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed">
-            This tribute is dedicated to the 14 souls of STS-51-L and STS-107, 
-            and to the millions of people whose lives were changed by their journey.
+            This tribute is dedicated to the 7 brave souls of STS-51-L, 
+            and to the generations of dreamers inspired by their final frontier.
           </p>
         </motion.div>
       </section>
@@ -39,15 +39,14 @@ const AboutPage = () => {
             <div className="w-12 h-12 rounded-2xl bg-sky-500/10 flex items-center justify-center">
               <Heart className="text-sky-400 w-6 h-6" />
             </div>
-            <h2 className="text-3xl font-serif text-white">Why This Site Exists</h2>
+            <h2 className="text-3xl font-serif text-white">Why This Archive Exists</h2>
             <p className="text-slate-400 leading-relaxed">
-              History is often recorded in dates and technical reports, but the true impact of the Space Shuttle 
-              programs lives in the hearts of those who watched, learned, and dreamt alongside the crew.
+              History is often recorded in cold dates and technical reports, but the true impact of the 
+              Challenger mission lives in the personal memories of those who watched from Earth.
             </p>
-            <p className="text-slate-400 leading-relaxed">
-              We built this platform to move beyond the tragedy and focus on the <strong>inspiration</strong>. 
-              By sharing personal stories, we ensure that the names Scobee, Smith, McNair, Onizuka, Resnik, 
-              Jarvis, McAuliffe, Husband, McCool, Anderson, Brown, Chawla, Clark, and Ramon are never forgotten.
+            <p className="text-slate-400 leading-relaxed font-light">
+              We built this platform to move beyond the tragedy and focus on the <strong>human story</strong>. 
+              By sharing these chronicles, we ensure that the names <span className="text-white">Scobee, Smith, McNair, Onizuka, Resnik, Jarvis, and McAuliffe</span> are carried forward by those they inspired.
             </p>
           </motion.div>
           
@@ -55,34 +54,32 @@ const AboutPage = () => {
              initial={{ opacity: 0, scale: 0.9 }}
              whileInView={{ opacity: 1, scale: 1 }}
              viewport={{ once: true }}
-             className="relative aspect-square rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/50 flex items-center justify-center p-12"
+             className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/5 bg-slate-900/20 flex items-center justify-center p-12"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sky-500/10 via-transparent to-transparent" />
-            <div className="text-center">
-                <Globe className="w-24 h-24 text-slate-700 mx-auto mb-6" />
-                <div className="text-5xl font-serif text-sky-500/20 uppercase tracking-[0.2em]">Memorial</div>
+            <div className="text-center relative z-10">
+                <Globe className="w-20 h-20 text-sky-500/20 mx-auto mb-6 animate-pulse" />
+                <div className="text-4xl font-serif text-white/10 uppercase tracking-[0.3em]">STS-51-L</div>
+                <div className="mt-4 flex justify-center gap-2">
+                    {[...Array(7)].map((_, i) => (
+                        <Star key={i} size={10} className="text-sky-500/40 fill-sky-500/20" />
+                    ))}
+                </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* 3. Historical Context (The Missions) */}
-      <section className="py-24 bg-slate-900/20 border-y border-slate-800/50">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-center text-3xl font-serif text-white mb-16">The Missions That Defined an Era</h2>
+      {/* 3. Historical Context */}
+      <section className="py-24 bg-slate-900/10 border-y border-white/5">
+        <div className="max-w-3xl mx-auto px-4">
+          <h2 className="text-center text-3xl font-serif text-white mb-16 italic">The Mission</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <MissionContextCard 
-              title="Challenger (1986)" 
-              description="STS-51-L was set to be the first time a civilian, a teacher, entered space. It became a moment that unified the world in grief and sparked a new era of safety and resilience in space exploration."
-              icon={<Rocket className="w-5 h-5" />}
-            />
-            <MissionContextCard 
-              title="Columbia (2003)" 
-              description="STS-107 was a marathon of science. For 16 days, the crew lived their dream of expanding human knowledge. Their loss taught us the heavy price of discovery and the necessity of vigilance."
-              icon={<ShieldCheck className="w-5 h-5" />}
-            />
-          </div>
+          <MissionContextCard 
+            title="Challenger // January 28, 1986" 
+            description="STS-51-L was set to be a milestone in history—the first time a teacher and civilian, Christa McAuliffe, would enter orbit. Though the journey was cut short, it unified a global audience and redefined the resilience of the human spirit in our quest for the stars."
+            icon={<Rocket className="w-5 h-5" />}
+          />
         </div>
       </section>
 
@@ -94,16 +91,16 @@ const AboutPage = () => {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto"
         >
-            <Users className="w-8 h-8 text-sky-400 mx-auto mb-6" />
-            <h3 className="text-xl font-serif text-white mb-4">A Community Project</h3>
-            <p className="text-slate-500 text-sm leading-relaxed mb-8">
-                This website is a non-profit tribute project created to honor the history of NASA's Space Shuttle program. 
-                All historical images are courtesy of NASA. All stories are submitted by users and remain the property of their respective authors.
+            <Users className="w-8 h-8 text-sky-400/40 mx-auto mb-6" />
+            <h3 className="text-xl font-serif text-white mb-4">A Community Tribute</h3>
+            <p className="text-slate-500 text-sm leading-relaxed mb-12 max-w-lg mx-auto font-light">
+                This is a non-profit archival project. Our goal is to provide a dignified space for the public 
+                to record where they were and how they felt, turning a moment of silence into an eternal conversation.
             </p>
-            <div className="flex justify-center gap-4">
-                <div className="h-px w-12 bg-slate-800 self-center" />
-                <span className="text-xs text-slate-600 uppercase tracking-widest font-bold">Per Aspera Ad Astra</span>
-                <div className="h-px w-12 bg-slate-800 self-center" />
+            <div className="flex justify-center gap-6 items-center">
+                <div className="h-px w-16 bg-gradient-to-r from-transparent to-slate-800" />
+                <span className="text-[10px] text-slate-500 uppercase tracking-[0.6em] font-mono">Ad Astra</span>
+                <div className="h-px w-16 bg-gradient-to-l from-transparent to-slate-800" />
             </div>
         </motion.div>
       </section>
@@ -113,14 +110,16 @@ const AboutPage = () => {
 
 /* Internal UI Component for Mission Cards */
 const MissionContextCard = ({ title, description, icon }: { title: string, description: string, icon: React.ReactNode }) => (
-  <div className="p-8 rounded-3xl border border-slate-800 bg-slate-950/50 hover:border-slate-700 transition-colors group">
-    <div className="flex items-center gap-4 mb-6">
-      <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
+  <div className="p-10 rounded-[2.5rem] border border-white/5 bg-slate-950/40 backdrop-blur-sm hover:border-sky-500/20 transition-all group relative overflow-hidden">
+    <div className="absolute -right-8 -top-8 w-32 h-32 bg-sky-500/5 blur-3xl rounded-full" />
+    
+    <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6">
+      <div className="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
         {icon}
       </div>
-      <h3 className="text-xl font-serif text-white">{title}</h3>
+      <h3 className="text-2xl font-serif text-white">{title}</h3>
     </div>
-    <p className="text-slate-400 text-sm leading-relaxed font-light">
+    <p className="text-slate-400 text-base leading-relaxed font-light">
       {description}
     </p>
   </div>
