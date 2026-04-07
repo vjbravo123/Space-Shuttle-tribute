@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-domain.com"),
+  metadataBase: new URL("https://vivekjoshi.online"),
 
   title: {
     default: "Challenger Tribute | Stories Inspired by the Challenger Crew",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "Challenger Tribute | Stories Inspired by the Challenger Crew",
     description:
       "Read and share meaningful stories about how the Challenger crew inspired people around the world.",
-    url: "https://your-domain.com",
+    url: "https://vivekjoshi.online",
     siteName: "Challenger Tribute",
 
     images: [
