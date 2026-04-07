@@ -13,22 +13,10 @@ const missions = [
     date: 'January 28, 1986',
     crew: '7 Members',
     description: 'Honoring the crew who inspired a generation of explorers and teachers to reach for the stars.',
-    image: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=2070&auto=format&fit=crop', // Historical Shuttle on Pad
+    image: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=2070&auto=format&fit=crop',
     color: 'group-hover:shadow-[0_0_50px_-12px_rgba(56,189,248,0.3)]',
     accent: 'text-sky-400',
     link: '/challenger',
-  },
-  {
-    id: 'columbia',
-    title: 'Columbia',
-    subtitle: 'Mission STS-107',
-    date: 'February 1, 2003',
-    crew: '7 Members',
-    description: 'Commemorating the dedicated scientists who expanded our understanding of life and science in orbit.',
-    image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop', // Shuttle in Orbit
-    color: 'group-hover:shadow-[0_0_50px_-12px_rgba(139,92,246,0.3)]',
-    accent: 'text-purple-400',
-    link: '/columbia',
   }
 ];
 
@@ -38,21 +26,23 @@ export const MissionSelector = () => {
       {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-sky-500/5 blur-[120px] rounded-full" />
+        {/* Kept a subtle purple glow for depth, or you can remove it */}
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/5 blur-[120px] rounded-full" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="mb-20">
+        <div className="mb-20 text-center flex flex-col items-center">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="flex items-center gap-4 mb-4"
           >
             <div className="h-[1px] w-12 bg-sky-500" />
-            <span className="text-sky-500 uppercase tracking-[0.3em] text-xs font-semibold">The Missions</span>
+            <span className="text-sky-500 uppercase tracking-[0.3em] text-xs font-semibold">The Mission</span>
+            <div className="h-[1px] w-12 bg-sky-500" />
           </motion.div>
           
           <motion.h2 
@@ -62,7 +52,7 @@ export const MissionSelector = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-serif text-white mb-6"
           >
-            Select a <span className="italic">Legacy</span>
+            Explore the <span className="italic">Legacy</span>
           </motion.h2>
           
           <motion.p 
@@ -72,20 +62,21 @@ export const MissionSelector = () => {
             transition={{ delay: 0.2 }}
             className="text-slate-400 max-w-2xl text-lg font-light leading-relaxed"
           >
-            Explore the history, the courage, and the lasting impact of these two pivotal 
-            moments in human space exploration.
+            Explore the history, the courage, and the lasting impact of this 
+            pivotal moment in human space exploration.
           </motion.p>
         </div>
 
-        {/* Mission Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
-          {missions.map((mission, index) => (
+        {/* Mission Card - Centered Layout */}
+        <div className="flex justify-center">
+          {missions.map((mission) => (
             <motion.div
               key={mission.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ duration: 0.8 }}
+              className="w-full max-w-4xl" // Constraints width so it doesn't get too wide on desktop
             >
               <Link href={mission.link} className="group block relative">
                 <div className={`
@@ -96,11 +87,9 @@ export const MissionSelector = () => {
                   
                   {/* IMAGE LAYER */}
                   <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-110">
-                    {/* Dark Overlay (Top and Bottom for readability) */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-slate-950/40 to-transparent z-10" />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/60 via-transparent to-transparent z-10" />
                     
-                    {/* Real Mission Image */}
                     <img 
                       src={mission.image} 
                       alt={mission.title}
@@ -111,7 +100,6 @@ export const MissionSelector = () => {
                   {/* CONTENT LAYER */}
                   <div className="relative z-20 h-full p-8 md:p-14 flex flex-col justify-between">
                     
-                    {/* Top Row: Mission Badge */}
                     <div className="flex justify-between items-start">
                       <div className="px-5 py-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-md">
                         <span className="text-[10px] uppercase tracking-[0.3em] text-white font-medium">
@@ -121,7 +109,6 @@ export const MissionSelector = () => {
                       <Star className="text-white/20 group-hover:text-white/60 transition-colors" size={24} />
                     </div>
 
-                    {/* Bottom Content */}
                     <div>
                       <motion.div className="flex flex-col gap-4 mb-6">
                          <h3 className="text-5xl md:text-7xl font-serif text-white">
@@ -154,7 +141,6 @@ export const MissionSelector = () => {
                     </div>
                   </div>
 
-                  {/* Hover Accent (Inner Border) */}
                   <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-[2.5rem] transition-all duration-700 m-4 pointer-events-none" />
                 </div>
               </Link>

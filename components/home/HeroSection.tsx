@@ -2,10 +2,20 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ChevronDown, Globe, ShieldCheck, Zap } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { useRouter } from "next/navigation"; // Import the router
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter(); // Initialize router
+
+  // Scroll function: Moves the view down by one viewport height (100vh)
+  const scrollToNextSection = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
+  };
 
   // 1. Smooth Mouse Follow (Parallax)
   const mouseX = useSpring(0, { stiffness: 40, damping: 30 });
@@ -44,7 +54,7 @@ export const HeroSection = () => {
         />
       </motion.div>
 
-      {/* LAYER 2: INTERACTIVE STARDUST (PARALLAX) */}
+      {/* LAYER 2: INTERACTIVE STARDUST */}
       <motion.div 
         style={{ x: mouseX, y: mouseY }}
         className="absolute inset-0 z-[5] pointer-events-none"
@@ -63,9 +73,8 @@ export const HeroSection = () => {
         ))}
       </motion.div>
 
-      {/* LAYER 3: NASA-STYLE HUD (SUBTLE OVERLAY) */}
+      {/* LAYER 3: NASA-STYLE HUD */}
       <div className="absolute inset-0 z-[11] pointer-events-none border-[1px] border-white/5 m-4 md:m-8 rounded-2xl overflow-hidden">
-        {/* Top Left HUD */}
         <div className="absolute top-6 left-6 text-[10px] font-mono text-sky-400/50 flex flex-col gap-1">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-sky-500 rounded-full animate-pulse" />
@@ -75,14 +84,12 @@ export const HeroSection = () => {
           <span>VEL: 7.66 KM/S</span>
         </div>
         
-        {/* Bottom Right HUD */}
         <div className="absolute bottom-6 right-6 text-[10px] font-mono text-white/30 text-right">
           <span>01.28.1986 // 02.01.2003</span>
           <br />
           <span>LEGACY_PROTOCOL_ACTIVE</span>
         </div>
 
-        {/* HUD Scanning Line */}
         <motion.div 
           animate={{ top: ['0%', '100%'] }}
           transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
@@ -131,14 +138,22 @@ export const HeroSection = () => {
           transition={{ duration: 1, delay: 1.5 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
-          <button className="group relative px-10 py-4 bg-white rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95">
+          {/* ACTION: Scroll little bit below */}
+          <button 
+            onClick={scrollToNextSection}
+            className="group relative px-10 py-4 bg-white rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95"
+          >
             <span className="relative z-10 text-black font-bold uppercase tracking-widest text-xs">
               Begin Exploration
             </span>
             <div className="absolute inset-0 bg-sky-400 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
           </button>
 
-          <button className="px-10 py-4 rounded-full border border-white/20 bg-black/20 backdrop-blur-md text-white hover:bg-white/10 transition-all uppercase tracking-widest text-xs font-medium">
+          {/* ACTION: Navigate to /stories */}
+          <button 
+            onClick={() => router.push("/stories")}
+            className="px-10 py-4 rounded-full border border-white/20 bg-black/20 backdrop-blur-md text-white hover:bg-white/10 transition-all uppercase tracking-widest text-xs font-medium"
+          >
             Read Stories
           </button>
         </motion.div>
@@ -151,7 +166,8 @@ export const HeroSection = () => {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 cursor-pointer"
+        onClick={scrollToNextSection}
       >
         <div className="w-px h-16 bg-gradient-to-b from-transparent via-sky-500 to-transparent" />
         <ChevronDown className="text-sky-500 w-5 h-5" />

@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 // Added "Contact" to the navigation array
 const navLinks = [
   { name: 'Challenger', href: '/challenger' },
-  { name: 'Columbia', href: '/columbia' },
+  // { name: 'Columbia', href: '/columbia' },
   { name: 'Archives', href: '/stories' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },

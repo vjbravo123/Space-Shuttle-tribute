@@ -24,8 +24,7 @@ export const Footer = () => {
               </span>
             </Link>
             <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
-              A digital sanctuary dedicated to the brave crews of Challenger and
-              Columbia. Their legacy continues to inspire the stars in all of
+              A digital sanctuary dedicated to the brave crews of Challenger. Their legacy continues to inspire the stars in all of
               us.
             </p>
           </div>
@@ -36,7 +35,7 @@ export const Footer = () => {
               Explore
             </h4>
             <ul className="space-y-4">
-              {["Challenger", "Columbia", "Stories", "About"].map((item) => (
+              {["Challenger", "Stories", "About"].map((item) => (
                 <li key={item}>
                   <Link
                     href={`/${item.toLowerCase()}`}
@@ -134,11 +133,11 @@ export const Footer = () => {
     <Info size={16} />
   </Link>
 
-  <Link href="mailto:hello@email.com" className="hover:text-white transition-colors">
+  <Link href="mailto:vjoshii822@gmail.com" className="hover:text-white transition-colors">
     <Mail size={16} />
   </Link>
 
-  <Link href="/" className="hover:text-white transition-colors">
+  <Link href="https://techhportfolio.netlify.app/" className="hover:text-white transition-colors">
     <Globe size={16} />
   </Link>
 </div>
