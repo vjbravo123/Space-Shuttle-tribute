@@ -13,7 +13,7 @@ const missions = [
     date: 'January 28, 1986',
     crew: '7 Members',
     description: 'Honoring the crew who inspired a generation of explorers and teachers to reach for the stars.',
-    image: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=2070&auto=format&fit=crop',
+    image: '/space.webp',
     color: 'group-hover:shadow-[0_0_50px_-12px_rgba(56,189,248,0.3)]',
     accent: 'text-sky-400',
     link: '/challenger',

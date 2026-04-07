@@ -48,7 +48,7 @@ export const AboutTribute = () => {
             {/* Main Image with Glass Frame */}
             <div className="relative z-10 rounded-[3rem] overflow-hidden border border-white/10 aspect-[4/5] shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?q=80&w=2072&auto=format&fit=crop" 
+                src="/shuttle.webp" 
                 alt="Earth from Space" 
                 className="w-full h-full object-cover scale-110"
               />

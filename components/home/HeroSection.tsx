@@ -48,7 +48,7 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#020617] z-10" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 z-10" />
         <img
-          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+          src="/herobanner.webp"
           alt="Earth from Space"
           className="w-full h-full object-cover opacity-80"
         />
