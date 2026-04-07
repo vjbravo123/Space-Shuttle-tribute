@@ -37,7 +37,6 @@ export const metadata: Metadata = {
   ],
 
   authors: [{ name: "Challenger Tribute Project" }],
-
   creator: "Challenger Tribute Project",
 
   openGraph: {
@@ -49,7 +48,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/herobanner.webp",
+        url: "https://vivekjoshi.online/herobanner.webp",
         width: 1200,
         height: 630,
         alt: "Challenger Tribute Banner",
@@ -65,7 +64,7 @@ export const metadata: Metadata = {
     title: "Challenger Tribute",
     description:
       "Share your story about how the Challenger crew inspired you.",
-    images: ["/herobanner.webp"],
+    images: ["https://vivekjoshi.online/herobanner.webp"],
   },
 
   icons: {
