@@ -15,11 +15,8 @@ const ShareStoryPage = () => {
             <StoryPageBackground activeMission={selectedMission} />
             
             <main className="relative z-10">
-                <StoryPageHeader 
-                    activeMission={selectedMission} 
-                    onMissionChange={(m) => setSelectedMission(m)} 
-                />
-                <StoryForm activeMission={selectedMission} />
+                <StoryPageHeader/>
+                <StoryForm />
             </main>
 
             <Footer />
