@@ -2,12 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB, Story } from "../../../lib/db";
 import cloudinary from "../../../lib/cloudinary";
 
-
-
 export async function POST(req: Request) {
-     console.log("Cloud Name:", process.env.CLOUDINARY_CLOUD_NAME);
-  console.log("API Key exists:", !!process.env.CLOUDINARY_API_KEY);
-  console.log("API Secret exists:", !!process.env.CLOUDINARY_API_SECRET);
   try {
     await connectDB();
     const formData = await req.formData();
@@ -17,12 +12,13 @@ export async function POST(req: Request) {
     const title = formData.get("title");
     const narrative = formData.get("narrative");
     const mission = formData.get("mission");
+    const category = formData.get("category") || "public"; // 'public' or 'heritage'
+    const relation = formData.get("relation") || "public-observer"; 
     const file = formData.get("image") as File | null;
 
     let imageUrl = "";
 
-    // 1. Upload to Cloudinary if file exists
-    if (file) {
+    if (file && file.size > 0) {
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
       
@@ -38,19 +34,20 @@ export async function POST(req: Request) {
       imageUrl = uploadResponse.secure_url;
     }
 
-    // 2. Save to MongoDB
     const newStory = await Story.create({
       name,
       email,
       title,
       narrative,
       mission,
+      category,
+      relation,
       imageUrl,
+      status: category === 'heritage' ? 'pending' : 'published', // Review family stories first
     });
 
     return NextResponse.json({ success: true, data: newStory }, { status: 201 });
   } catch (error: any) {
-    console.error("Submission Error:", error);
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }
@@ -62,8 +59,11 @@ export async function GET(req: Request) {
     
     const mission = searchParams.get("mission");
     const search = searchParams.get("search");
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = 12;
+    const skip = (page - 1) * limit;
 
-    let query: any = {};
+    let query: any = { status: 'published' }; // Only show approved stories
 
     if (mission && mission !== 'all') {
       query.mission = mission;
@@ -77,8 +77,20 @@ export async function GET(req: Request) {
       ];
     }
 
-    const stories = await Story.find(query).sort({ createdAt: -1 });
-    return NextResponse.json({ success: true, data: stories });
+    // If no search is active, we can return the stories
+    // The frontend will handle splitting them into Heritage vs Public
+    const totalStories = await Story.countDocuments(query);
+    const stories = await Story.find(query)
+      .sort({ category: 1, createdAt: -1 }) // Puts 'heritage' (H) before 'public' (P)
+      .skip(skip)
+      .limit(limit);
+
+    return NextResponse.json({ 
+      success: true, 
+      data: stories,
+      totalPages: Math.ceil(totalStories / limit),
+      currentPage: page
+    });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }

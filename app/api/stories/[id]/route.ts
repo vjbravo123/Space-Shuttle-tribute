@@ -8,21 +8,33 @@ export async function GET(
   try {
     await connectDB();
     const { id } = await params;
-    console.log(id);
 
     const story = await Story.findById(id);
-    if (!story)
+    if (!story) {
       return NextResponse.json(
         { success: false, error: "Story not found" },
         { status: 404 }
       );
+    }
 
+    // Smart "Related Stories" logic:
+    // 1. Same mission
+    // 2. Same category (if heritage, show heritage)
+    // 3. Exclude current story
     const related = await Story.find({
       mission: story.mission,
+      category: story.category,
       _id: { $ne: story._id },
-    }).limit(3);
+      status: 'published'
+    })
+    .sort({ createdAt: -1 })
+    .limit(3);
 
-    return NextResponse.json({ success: true, data: story, related });
+    return NextResponse.json({ 
+      success: true, 
+      data: story, 
+      related: related.length > 0 ? related : await Story.find({ _id: { $ne: story._id } }).limit(3) 
+    });
   } catch (error: any) {
     return NextResponse.json(
       { success: false, error: error.message },

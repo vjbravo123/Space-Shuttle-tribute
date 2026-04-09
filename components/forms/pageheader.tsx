@@ -40,46 +40,32 @@ export const PageHeader = ({ onSearch }: PageHeaderProps) => {
             <span className="text-[10px] uppercase tracking-[0.5em] text-sky-400/80 font-mono">Challenger Archive Connected</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-serif text-white mb-6 leading-[1.1]">
-            The Public <br />
-            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-white to-sky-400/50">Chronicles</span>
-          </h1>
+          <h1 className="text-5xl md:text-8xl font-serif text-white mb-8 leading-tight tracking-tight">
+  The Living <br />
+  <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-white to-slate-500">
+    Archive
+  </span>
+</h1>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto mt-12">
-          <div className="bg-slate-900/40 border border-white/5 backdrop-blur-3xl rounded-[2rem] p-2 shadow-2xl">
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-sky-500/50 group-focus-within:text-sky-400 transition-colors">
-                <Search size={20} strokeWidth={1.5} />
-              </div>
-
-              <input 
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Query mission logs..."
-                className="w-full bg-slate-950/60 border border-white/5 rounded-[1.6rem] py-5 md:py-6 pl-14 pr-32 text-white placeholder:text-slate-600 outline-none focus:border-sky-500/20 transition-all duration-500 text-sm md:text-base"
-              />
-
-              <div className="absolute inset-y-0 right-4 flex items-center gap-3">
-                <AnimatePresence>
-                  {searchQuery && (
-                    <motion.button 
-                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                      onClick={() => setSearchQuery('')} 
-                      className="p-2 text-slate-500 hover:text-white"
-                    >
-                      <X size={18} />
-                    </motion.button>
-                  )}
-                </AnimatePresence>
-                <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/5 font-mono text-[9px] text-slate-400 uppercase">
-                  <Rocket size={14} className="text-sky-500" /> STS-51-L
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div className="max-w-2xl mx-auto mt-16 relative">
+  <div className="absolute -inset-1 bg-gradient-to-r from-sky-500/20 to-indigo-500/20 blur-xl opacity-50" />
+  <div className="relative bg-slate-950/50 border border-white/10 backdrop-blur-2xl rounded-full p-1.5 flex items-center shadow-2xl">
+    <div className="pl-6 text-sky-500/50">
+      <Search size={20} />
+    </div>
+    <input 
+      type="text"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      placeholder="Search the collective memory..."
+      className="flex-grow bg-transparent border-none py-4 px-4 text-white placeholder:text-slate-600 outline-none text-lg"
+    />
+    <button className="bg-sky-500 hover:bg-sky-400 text-slate-950 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all">
+      Explore
+    </button>
+  </div>
+</div>
       </div>
     </header>
   );
