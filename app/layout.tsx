@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-domain.com"),
+  metadataBase: new URL("https://vivekjoshi.online"),
 
   title: {
     default: "Challenger Tribute | Stories Inspired by the Challenger Crew",
@@ -37,19 +37,18 @@ export const metadata: Metadata = {
   ],
 
   authors: [{ name: "Challenger Tribute Project" }],
-
   creator: "Challenger Tribute Project",
 
   openGraph: {
     title: "Challenger Tribute | Stories Inspired by the Challenger Crew",
     description:
       "Read and share meaningful stories about how the Challenger crew inspired people around the world.",
-    url: "https://your-domain.com",
+    url: "https://vivekjoshi.online",
     siteName: "Challenger Tribute",
 
     images: [
       {
-        url: "/herobanner.webp",
+        url: "https://vivekjoshi.online/herobanner.webp",
         width: 1200,
         height: 630,
         alt: "Challenger Tribute Banner",
@@ -65,7 +64,7 @@ export const metadata: Metadata = {
     title: "Challenger Tribute",
     description:
       "Share your story about how the Challenger crew inspired you.",
-    images: ["/herobanner.webp"],
+    images: ["https://vivekjoshi.online/herobanner.webp"],
   },
 
   icons: {
